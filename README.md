@@ -1,2 +1,2 @@
 # react-management-app
-basic project management app built with react
+[guided project] basic project management app built with react
