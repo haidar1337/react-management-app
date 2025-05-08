@@ -1,4 +1,4 @@
-export default function Input({ title, type, isTextArea, ...props }) {
+export default function Input({ title, type, ref, isTextArea, ...props }) {
   const inputClasses = "bg-slate-300 p-1 w-full mb-4";
   return (
     <>
@@ -6,9 +6,9 @@ export default function Input({ title, type, isTextArea, ...props }) {
         {title}
       </p>
       {isTextArea ? (
-        <textarea type={type} className={inputClasses}></textarea>
+        <textarea ref={ref} type={type} className={inputClasses}></textarea>
       ) : (
-        <input type={type} className={inputClasses} />
+        <input ref={ref} type={type} className={inputClasses} />
       )}
     </>
   );

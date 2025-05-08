@@ -1,6 +1,6 @@
-import Tab from "./Tab";
+import Tab from "./Tab.jsx";
 
-export default function Sidebar({ onCreateProject, ...props }) {
+export default function Sidebar({ onCreateProject, projects, ...props }) {
   return (
     <div className="flex-initial rounded-r-lg mt-8 p-8 h-screen w-72 bg-slate-950">
       <h1 className="text-white text-2xl mb-8 font-bold">YOUR PROJECTS</h1>
@@ -10,7 +10,13 @@ export default function Sidebar({ onCreateProject, ...props }) {
       >
         + Add Project
       </button>
-      <Tab isActive={true} title={"Learning React"}></Tab>
+      {projects.map((p, i) => {
+        return (
+          <Tab key={i} isActive={false}>
+            {p.title}
+          </Tab>
+        );
+      })}
     </div>
   );
 }
