@@ -25,6 +25,8 @@ export default function NewProject({
       return;
     }
 
+    console.log(created);
+
     onCancel();
   }
 
@@ -49,22 +51,33 @@ export default function NewProject({
       </div>
 
       <div className="flex flex-col basis-1 flex-auto w-full self-start justify-start items-start">
+        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
+          Title
+        </p>
         <Input
           ref={titleInput}
+          className="bg-slate-300 p-1 w-full mb-4"
           type={"text"}
-          title={"title"}
           isTextArea={false}
         ></Input>
+
+        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
+          Description
+        </p>
         <Input
           ref={descriptionInput}
-          type={"text"}
-          title={"description"}
+          type="text"
+          className="bg-slate-300 p-1 w-full mb-4"
           isTextArea={true}
         ></Input>
+
+        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
+          Date
+        </p>
         <Input
           ref={dateInput}
-          type={"date"}
-          title={"date"}
+          type="date"
+          className="bg-slate-300 p-1 w-full mb-4"
           isTextArea={false}
         ></Input>
       </div>

@@ -1,14 +1,15 @@
-export default function Input({ title, type, ref, isTextArea, ...props }) {
-  const inputClasses = "bg-slate-300 p-1 w-full mb-4";
+export default function Input({ className, type, ref, isTextArea, ...props }) {
   return (
     <>
-      <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
-        {title}
-      </p>
       {isTextArea ? (
-        <textarea ref={ref} type={type} className={inputClasses}></textarea>
+        <textarea
+          ref={ref}
+          type={type}
+          className={className}
+          {...props}
+        ></textarea>
       ) : (
-        <input ref={ref} type={type} className={inputClasses} />
+        <input ref={ref} type={type} className={className} {...props} />
       )}
     </>
   );
