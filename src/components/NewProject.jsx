@@ -7,9 +7,11 @@ export default function NewProject({
   titleInput,
   descriptionInput,
   dateInput,
-  ...props
 }) {
   const [hasError, setHasError] = useState(false);
+  const inputTitleClasses =
+    "font-bold uppercase text-slate-900 text-sm opacity-50";
+  const inputClasses = "bg-slate-300 p-1 w-full mb-4";
 
   function handleSave(title, description, date) {
     if (!title || !description || !date) {
@@ -25,7 +27,7 @@ export default function NewProject({
       return;
     }
 
-    onCancel();
+    onCancel(); // navigate back to home page
   }
 
   return (
@@ -49,33 +51,27 @@ export default function NewProject({
       </div>
 
       <div className="flex flex-col basis-1 flex-auto w-full self-start justify-start items-start">
-        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
-          Title
-        </p>
+        <p className={inputTitleClasses}>Title</p>
         <Input
           ref={titleInput}
-          className="bg-slate-300 p-1 w-full mb-4"
+          className={inputClasses}
           type={"text"}
           isTextArea={false}
         ></Input>
 
-        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
-          Description
-        </p>
+        <p className={inputTitleClasses}>Description</p>
         <Input
           ref={descriptionInput}
           type="text"
-          className="bg-slate-300 p-1 w-full mb-4"
+          className={inputClasses}
           isTextArea={true}
         ></Input>
 
-        <p className="font-bold uppercase text-slate-900 text-sm opacity-50">
-          Date
-        </p>
+        <p className={inputTitleClasses}>Date</p>
         <Input
           ref={dateInput}
           type="date"
-          className="bg-slate-300 p-1 w-full mb-4"
+          className={inputClasses}
           isTextArea={false}
         ></Input>
       </div>

@@ -5,7 +5,6 @@ export default function Sidebar({
   onSelectProject,
   selectedProject,
   projects,
-  ...props
 }) {
   return (
     <div className="flex-initial rounded-r-lg mt-8 p-8 h-screen w-72 bg-slate-950">

@@ -1,6 +1,6 @@
 import NoProjects from ".././assets/no-projects.png";
 
-export default function Home({ onCreateProject, ...props }) {
+export default function Home({ onCreateProject }) {
   return (
     <div className="flex flex-col flex-auto h-screen justify-center items-center">
       <img src={NoProjects} alt="No Projects" className="h-32 w-32 mb-4" />

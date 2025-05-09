@@ -7,7 +7,6 @@ export default function Project({
   projects,
   setProjects,
   setSelected,
-  ...props
 }) {
   const taskRef = useRef();
   const [hasError, setHasError] = useState(false);
@@ -97,8 +96,8 @@ export default function Project({
         {project.tasks.length < 1 && (
           <p>This project doesn't have any tasks yet.</p>
         )}
-        {project.tasks.map((t, i) => {
-          return <Task key={i} task={t} onClear={handleClearTask}></Task>;
+        {project.tasks.map((t) => {
+          return <Task key={t.id} task={t} onClear={handleClearTask}></Task>;
         })}
       </div>
     </div>

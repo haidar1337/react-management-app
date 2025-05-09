@@ -1,4 +1,4 @@
-export default function Tab({ project, onSelect, isActive, ...props }) {
+export default function Tab({ project, onSelect, isActive }) {
   return (
     <button
       onClick={() => onSelect(project)}
