@@ -5,7 +5,7 @@ import NewProject from "./components/NewProject.jsx";
 import Project from "./components/Project.jsx";
 
 function App() {
-  const [isCreatingProject, setIsCreatingProject] = useState(false); //change to false later
+  const [isCreatingProject, setIsCreatingProject] = useState(false);
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -14,11 +14,13 @@ function App() {
   const dateInput = useRef();
 
   function handleIsCreatingProject() {
-    setIsCreatingProject(true);
+    setIsCreatingProject((prev) => !prev);
+    setSelectedProject(null);
   }
 
   function handleSelectProject(selected) {
     setSelectedProject(selected);
+    setIsCreatingProject(false);
   }
 
   function handleCancel() {
@@ -31,8 +33,6 @@ function App() {
       out = { title, description, date, id: old.length + 1, tasks: [] };
 
       const newArr = [...old, out];
-      // const newArr = old.concat([out]);
-
       return newArr;
     });
 
@@ -50,12 +50,13 @@ function App() {
         onCancel={handleCancel}
       ></NewProject>
     );
-  if (selectedProject)
+  if (selectedProject && !isCreatingProject)
     mainContent = (
       <Project
         projectId={selectedProject.id}
         projects={projects}
         setProjects={setProjects}
+        setSelected={handleSelectProject}
       ></Project>
     );
 

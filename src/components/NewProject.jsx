@@ -25,8 +25,6 @@ export default function NewProject({
       return;
     }
 
-    console.log(created);
-
     onCancel();
   }
 

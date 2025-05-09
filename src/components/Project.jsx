@@ -6,11 +6,40 @@ export default function Project({
   projectId,
   projects,
   setProjects,
+  setSelected,
   ...props
 }) {
   const taskRef = useRef();
   const [hasError, setHasError] = useState(false);
   const project = projects.find((p) => p.id === projectId);
+
+  function handleDeleteProject() {
+    setProjects((prev) => {
+      return [...prev.filter((p) => p.id !== project.id)];
+    });
+
+    setSelected(null);
+  }
+
+  function handleClearTask(task) {
+    const found = project.tasks.find((t) => t.id === task.id);
+    if (!found) {
+      setHasError(true);
+      return;
+    }
+
+    setProjects((prev) => {
+      return prev.map((p) => {
+        if (p.id === project.id) {
+          return {
+            ...p,
+            tasks: [...p.tasks.filter((t) => t.id !== found.id)],
+          };
+        }
+        return p;
+      });
+    });
+  }
 
   function handleAddTask() {
     const task = taskRef.current.value;
@@ -22,7 +51,10 @@ export default function Project({
     setProjects((prev) => {
       return prev.map((p) => {
         if (p.id === project.id) {
-          return { ...p, tasks: [...p.tasks, task] };
+          return {
+            ...p,
+            tasks: [...p.tasks, { id: p.tasks.length + 1, content: task }],
+          };
         }
         return p;
       });
@@ -35,7 +67,7 @@ export default function Project({
     <div className="flex flex-col flex-auto justify-center items-center m-48">
       <div className="flex flex-row justify-between w-full mb-2">
         <h1 className="text-2xl font-bold">{project.title}</h1>
-        <button>Delete</button>
+        <button onClick={handleDeleteProject}>Delete</button>
       </div>
       <div className="flex flex-col self-start justify-center items-start w-full">
         <p className="text-grey opacity-50 text-md mb-4">
@@ -62,8 +94,11 @@ export default function Project({
         </p>
       )}
       <div className="flex flex-col self-start justify-start items-start w-1/2 bg-orange-100 opacity-75 p-4 mt-8">
+        {project.tasks.length < 1 && (
+          <p>This project doesn't have any tasks yet.</p>
+        )}
         {project.tasks.map((t, i) => {
-          return <Task key={i} content={t}></Task>;
+          return <Task key={i} task={t} onClear={handleClearTask}></Task>;
         })}
       </div>
     </div>
